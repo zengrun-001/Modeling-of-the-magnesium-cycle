@@ -70,7 +70,7 @@ def load_mg_csv(csv_path: str) -> pd.DataFrame:
                 time_col = lower_map[c]
                 break
     if time_col is None:
-        raise ValueError(f"未找到时间列，请在 CSV 中添加一列命名为其中之一: {time_candidates}")
+        raise ValueError(f"The time column was not found. Please add a column named time to your CSV file: {time_candidates}")
 
     mg_col = None
     for c in mg_candidates:
@@ -84,7 +84,7 @@ def load_mg_csv(csv_path: str) -> pd.DataFrame:
                 mg_col = lower_map[c]
                 break
     if mg_col is None:
-        raise ValueError(f"未找到 delta26Mg 列，请在 CSV 中添加一列命名为其中之一: {mg_candidates}")
+        raise ValueError(f"Please add a column named delta26Mg in your CSV file: {mg_candidates}")
 
     sub = df[[time_col, mg_col]].copy()
     sub.columns = ["time[Myr]", "delta26Mg"]
@@ -459,14 +459,10 @@ def main():
                         '', show_prediction=True)
     axs[3,1].set_xlabel('Age (Ma)', fontweight='bold', fontsize=13)
 
-    # Mark modified periods
-    axs[3,1].axvspan(543.0, 546.0, alpha=0.1, color='red', label='Straight line period 1')
-    axs[3,1].axvspan(538.0, 540.0, alpha=0.1, color='blue', label='Straight line period 2')
+    # Mark modified periods - removed to avoid visual obstruction
 
     axs[0,0].legend(loc='upper right', frameon=True, fancybox=True, shadow=True, 
                    fontsize=11, bbox_to_anchor=(1.0, 1.0))
-    axs[3,1].legend(loc='upper right', frameon=True, fancybox=True, shadow=True, 
-                   fontsize=10, bbox_to_anchor=(1.0, 1.0))
 
     fig.suptitle('Integrated Mg Mass Balance + pCO2 (k=0.6)\n(Monte Carlo with Enhanced Gradient Effects)', 
                 fontsize=18, fontweight='bold', y=0.98)

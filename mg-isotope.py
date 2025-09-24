@@ -42,7 +42,7 @@ delta26mg_max = 2.0
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Integrated Mg + pCO2 from CSV")
-    parser.add_argument("--csv", type=str, default=str(Path("D:/cursor-code/run-test/data.csv")), help="Path to CSV containing time and delta26Mg")
+    parser.add_argument("--csv", type=str, default=str(Path("D:/data.csv")), help="Path to CSV containing time and delta26Mg")
     parser.add_argument("--save_prefix", type=str, default="Mg_Isotope_Integrated_pCO2", help="Output filename prefix")
     return parser.parse_args()
 
